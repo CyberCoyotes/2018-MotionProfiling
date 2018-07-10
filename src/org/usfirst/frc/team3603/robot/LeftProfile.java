@@ -1,8 +1,7 @@
 package org.usfirst.frc.team3603.robot;
 
-public class LeftProfile extends PointsList {	
-	// Position (rotations)	Velocity (RPM)	Duration (ms)
-	public static double[][]Points = new double[][]{		
+public class LeftProfile extends PointsList {		
+	public static double[][] Points = new double[][]{		
 		{0.000005, 0.001000, 10},
 		{0.000011, 0.000640, 10},
 		{0.000026, 0.001439, 10},
@@ -587,6 +586,4 @@ public class LeftProfile extends PointsList {
 		{13.386930, 0.000191, 10},
 		{13.386930, 0.000000, 10}
 	};
-
-	public static final int kNumPoints = Points.length;	
 }

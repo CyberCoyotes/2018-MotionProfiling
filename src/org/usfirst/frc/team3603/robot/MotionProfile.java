@@ -322,7 +322,7 @@ public class MotionProfile {
 
 	private void startFilling() {
 		/* since this example only has one talon, just update that one */
-		startFilling(RightProfile.Points, RightProfile.kNumPoints);
+		startFilling(list.Points, list.Points.length);
 	}
 
 
