@@ -32,16 +32,17 @@ import com.ctre.phoenix.motion.*;
 import com.ctre.phoenix.motorcontrol.*;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Robot extends IterativeRobot {
 
 	/** The Talon we want to motion profile. */
-	WPI_TalonSRX left = new WPI_TalonSRX(0);
+	WPI_TalonSRX left = new WPI_TalonSRX(1);
 	WPI_TalonSRX right = new WPI_TalonSRX(1);
 
 	/** some example logic on how one can manage an MP */
-	MotionProfile leftProfile = new MotionProfile(left, new LeftProfile());
-	MotionProfile rightProfile = new MotionProfile(right, new RightProfile());
+	MotionProfile leftProfile = new MotionProfile(left, LeftProfile.Points);
+	MotionProfile rightProfile = new MotionProfile(right, RightProfile.Points);
 
 	/** joystick for testing */
 	Joystick _joy = new Joystick(0);
@@ -108,6 +109,7 @@ public class Robot extends IterativeRobot {
 		 * wants to run MP.
 		 */
 		leftProfile.control();
+		SmartDashboard.putNumber("Speed", left.getMotorOutputVoltage());
 		rightProfile.control();
 
 		/* Check button 5 (top left shoulder on the logitech gamead). */
@@ -119,7 +121,7 @@ public class Robot extends IterativeRobot {
 			 */
 
 			/* button5 is off so straight drive */
-			left.set(ControlMode.PercentOutput, leftYjoystick);
+			left.set(ControlMode.PercentOutput, 0);
 			right.set(ControlMode.PercentOutput, leftYjoystick);
 
 			leftProfile.reset();
@@ -150,7 +152,6 @@ public class Robot extends IterativeRobot {
 				rightProfile.startMotionProfile();
 			}
 		}
-
 		/* save buttons states for on-press detection */
 		for (int i = 1; i < 10; ++i)
 			_btnsLast[i] = btns[i];

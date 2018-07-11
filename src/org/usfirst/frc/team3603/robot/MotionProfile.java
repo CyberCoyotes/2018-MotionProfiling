@@ -139,15 +139,15 @@ public class MotionProfile {
 	Notifier _notifer = new Notifier(new PeriodicRunnable());
 
 	
-	private PointsList list;
+	private double[][] list;
 	
 	/**
 	 * C'tor
 	 * 
-	 * @param talon
-	 *            reference to Talon object to fetch motion profile status from.
+	 * @param talon- reference to Talon object to fetch motion profile status from.
+	 * @param _list- The list of trajectory points to read from
 	 */
-	public MotionProfile(TalonSRX talon, PointsList _list) {
+	public MotionProfile(TalonSRX talon, double[][] _list) {
 		_talon = talon;
 		/*
 		 * since our MP is 10ms per point, set the control frame rate and the
@@ -193,7 +193,6 @@ public class MotionProfile {
 	 */
 
 	public void control() {
-
 		/* Get the motion profile status every loop */
 		_talon.getMotionProfileStatus(_status);
 
@@ -322,7 +321,7 @@ public class MotionProfile {
 
 	private void startFilling() {
 		/* since this example only has one talon, just update that one */
-		startFilling(list.Points, list.Points.length);
+		startFilling(list, list.length);
 	}
 
 
